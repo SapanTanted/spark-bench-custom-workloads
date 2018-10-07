@@ -1,16 +1,17 @@
 package com.sapan.sparkbench.workload.template;
 
 
+import com.ibm.sparktc.sparkbench.utils.GeneralFunctions;
+import com.ibm.sparktc.sparkbench.utils.GeneralFunctions$;
 import com.ibm.sparktc.sparkbench.utils.SaveModes;
 import com.ibm.sparktc.sparkbench.workload.Workload;
 import com.ibm.sparktc.sparkbench.workload.WorkloadDefaults;
-import scala.Option;
-import scala.Serializable;
-import scala.Some;
+import scala.*;
+import scala.collection.immutable.HashMap;
 import scala.collection.immutable.Map;
 
 public class MyCustomWorkloadJava$ implements WorkloadDefaults, Serializable {
-
+	//MODULE$ variable is compulsory
 	public static final MyCustomWorkloadJava$ MODULE$ = new MyCustomWorkloadJava$();
 
 	public static void main(String[] args) {
@@ -36,9 +37,10 @@ public class MyCustomWorkloadJava$ implements WorkloadDefaults, Serializable {
         Keep in mind that the keys in your map have been toLowerCase()'d for consistency.
         */
 		//compulsory parameters
-		Option<String> input = map.get("input") != null ? new Some(map.get("input")) : Option.empty();
-		Option<String> output = map.get("output") != null ? new Some(map.get("output")) : Option.empty();
-		String saveMode = map.get("saveMode") != null ? String.valueOf(map.get("saveMode")) : SaveModes.error();
+		Option<String> input = GeneralFunctions.optionallyGet(map, "input");
+		Option<String> output = GeneralFunctions.optionallyGet(map, "output");
+		Option<String> saveModeOption = GeneralFunctions.optionallyGet(map, "saveMode");
+		String saveMode = saveModeOption.isEmpty() ? SaveModes.error() : saveModeOption.get();
 		//non-compulsory parameters
 		String class_ = String.valueOf(map.get("class"));
 		return new MyCustomWorkloadJava(input, output, saveMode, class_);
