@@ -12,7 +12,7 @@ import com.ibm.sparktc.sparkbench.workload.*;
 public class MyCustomWorkloadJava implements Workload,Serializable{
 
 	public static void main(String[] args) {
-		System.out.println("MyCustomWorkloadJava Hello World!");
+		System.out.println("DecisionTreeClassification Hello World!");
 	}
 
 	public MyCustomWorkloadJava() {

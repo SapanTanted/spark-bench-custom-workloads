@@ -18,7 +18,7 @@ public class MyCustomWorkloadJava$ implements WorkloadDefaults,Serializable{
 	public static final MyCustomWorkloadJava$ MODULE$= new MyCustomWorkloadJava$();
 
 	public static void main(String[] args) {
-		System.out.println("MyCustomWorkloadJava$ Hello World!");
+		System.out.println("DecisionTreeClassification$ Hello World!");
 		System.out.println(((Option<String>)new Some<String>("[\"hdfs:///tmp/csv-vs-parquet/kmeans-data.csv\", \"hdfs:///tmp/csv-vs-parquet/kmeans-data.parquet\"]")).get());
 	}
 
