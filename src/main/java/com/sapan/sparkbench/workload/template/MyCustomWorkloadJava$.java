@@ -37,9 +37,10 @@ public class MyCustomWorkloadJava$ implements WorkloadDefaults, Serializable {
         Keep in mind that the keys in your map have been toLowerCase()'d for consistency.
         */
 		//compulsory parameters
+
 		Option<String> input = GeneralFunctions.optionallyGet(map, "input");
 		Option<String> output = GeneralFunctions.optionallyGet(map, "output");
-		Option<String> saveModeOption = GeneralFunctions.optionallyGet(map, "saveMode");
+		Option<String> saveModeOption = GeneralFunctions.optionallyGet(map, "savemode");
 		String saveMode = saveModeOption.isEmpty() ? SaveModes.error() : saveModeOption.get();
 		//non-compulsory parameters
 		String class_ = String.valueOf(map.get("class"));
