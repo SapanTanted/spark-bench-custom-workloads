@@ -57,8 +57,7 @@ public class SVM implements Workload,Serializable{
 			System.out.println("do Workload....");
 		}
 		 */
-		SparkConf conf = new SparkConf().setAppName("JavaSVMWithSGDExample");
-		SparkContext sc = new SparkContext(conf);
+		SparkContext sc = sparkSession.sparkContext();
 		// $example on$
 		String path = inputDataFile;
 		JavaRDD<LabeledPoint> data = MLUtils.loadLibSVMFile(sc, path).toJavaRDD();
