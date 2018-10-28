@@ -1,6 +1,8 @@
 # spark-bench-custom-workloads
 This project has all the custom workloads that we will be using in Spark R&amp;D under Prof. Umesh Bellur
 
+Compilation command:
+mvn clean package assembly:single
 
 WORD COUNT
 
