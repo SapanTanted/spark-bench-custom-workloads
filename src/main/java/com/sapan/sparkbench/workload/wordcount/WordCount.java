@@ -3,36 +3,31 @@ package com.sapan.sparkbench.workload.wordcount;
 
 import com.ibm.sparktc.sparkbench.workload.Workload;
 import com.ibm.sparktc.sparkbench.workload.Workload$class;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.ml.Pipeline;
-import org.apache.spark.ml.PipelineModel;
-import org.apache.spark.ml.PipelineStage;
-import org.apache.spark.ml.classification.DecisionTreeClassificationModel;
-import org.apache.spark.ml.classification.DecisionTreeClassifier;
-import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator;
-import org.apache.spark.ml.feature.*;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+
+import java.util.ArrayList;
+
+
 import scala.Option;
 import scala.Serializable;
 import scala.Tuple2;
+
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.sql.SparkSession;
 import scala.collection.immutable.Map;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.apache.commons.lang3.StringUtils.SPACE;
-
-public class WordCount implements Workload,Serializable{
+public class WordCount implements Workload, Serializable {
 	//compulsory parameters
 	private Option<String> input,output;
 	private String saveMode;
 	//parameters sent from spark-bench
 	private String inputDataFile;
-	private String dataFormat;
+
 	public WordCount(Option<String> input, Option<String> output, String saveMode, String inputDataFile) {
 		this.input = input;
 		this.output = output;
@@ -56,7 +51,7 @@ public class WordCount implements Workload,Serializable{
 
 		JavaRDD<String> lines = spark.read().textFile(inputDataFile).javaRDD();
 
-		JavaRDD<String> words = lines.flatMap(s -> Arrays.asList(SPACE.split(s)).iterator());
+		JavaRDD<String> words = lines.flatMap(s -> Arrays.asList(s.split(" ")).iterator());
 
 		JavaPairRDD<String, Integer> ones = words.mapToPair(s -> new Tuple2<>(s, 1));
 
