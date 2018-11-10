@@ -58,11 +58,11 @@ public class WordCount implements Workload, Serializable {
 		JavaPairRDD<String, Integer> counts = ones.reduceByKey((i1, i2) -> i1 + i2);
 
 		List<Tuple2<String, Integer>> output = counts.collect();
-		String res="";
-		for (Tuple2<?,?> tuple : output) {
-			System.out.println(tuple._1() + ": " + tuple._2());
-			res+=(tuple._1() + ": " + tuple._2());
-		}
+		String res="Result is not printed and not sent as output. Because It can be too large for big files.";
+//		for (Tuple2<?,?> tuple : output) {
+//			System.out.println(tuple._1() + ": " + tuple._2());
+//			res+=(tuple._1() + ": " + tuple._2());
+//		}
 		// $example off$
 
 		ArrayList<WordCountResult> wordCountResults = new ArrayList<>();
